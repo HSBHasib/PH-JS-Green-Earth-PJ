@@ -69,12 +69,33 @@ const displayPlants = (dets) => {
 
 const displayCategoryItem = (dets) => {
     dets.forEach(elem => {
-        let button = document.createElement('button');
-        button.className =  'btn w-full h-8  text-[16px] bg-transparent border-none hover:bg-[#15803D] justify-start px-4';
-        button.innerText = elem.category_name;
-        categoryContainer.append(button);
+        let btn = document.createElement('button');
+        btn.className =  'btn w-full h-8  text-[16px] bg-transparent border-none hover:bg-[#15803D] hover:text-white justify-start px-4';
+        btn.innerText = elem.category_name;
+        btn.onclick = () => selectCategory(elem.id, btn);
+        categoryContainer.append(btn);
     });
 };
+
+async function selectCategory(id, btn) {
+    showLoading();
+
+    const allBtn = categoryContainer.querySelectorAll('button');
+
+    allBtn.forEach(b => {
+        b.classList.remove('bg-[#15803D]', 'text-white');
+        b.classList.add('bg-transparent');
+    });
+
+    btn.classList.add('bg-[#15803D]', 'text-white');
+    btn.classList.remove('bg-transparent');
+
+    const res = await fetch(`https://openapi.programming-hero.com/api/category/${id}`);
+    const data = await res.json();
+    displayPlants(data.plants);
+};
+
+
 
 loadPlants();
 loadCategoryItem();
