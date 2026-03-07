@@ -7,7 +7,7 @@ const plantModal = document.getElementById('plant_modal');
 const modalTitle = document.getElementById('modal-title');
 const modalImg = document.getElementById('modal-img');
 const modalCategory = document.getElementById('modal-category');
-const modalDes = document.getElementById('"modal-des');
+const modalDes = document.getElementById('modal-des');
 const modalPrice = document.getElementById('modal-price');
 
 const showLoading = () => {
@@ -118,17 +118,24 @@ async function selectCategory(id, btn) {
     displayPlants(data.plants);
 };
 
-// async function showPlantModal(id) {
-//     plantModal.showModal();
+async function showPlantModal(id) {
+    plantModal.showModal();
 
-//     const res = await fetch(`https://openapi.programming-hero.com/api/plant/${id}`);
-//     const data = await res.json();
-//     displayModalInfo(data.plants);
-// };
+    const res = await fetch(`https://openapi.programming-hero.com/api/plant/${id}`);
+    const data = await res.json();
+    displayModalInfo(data.plants);
+};
 
-// function displayModalInfo(dets) {
-//    modalTitle.textContent = 
-// }
+function displayModalInfo(dets) {
+    modalTitle.textContent = dets.name;
+    modalImg.src = dets.image;
+    modalCategory.textContent = dets.category;
+    modalDes.textContent = dets.description;
+    modalPrice.textContent = `৳${dets.price}`;
+
+    console.log(dets);
+
+};
 
 loadPlants();
 loadCategoryItem();
