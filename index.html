@@ -65,22 +65,70 @@
                 <div class="col-span-1"> 
                     <h2 class="text-lg font-bold mb-2">Categories</h2>
                     <div id="category-container" class="flex flex-col gap-2">
-                        <button class="btn w-full h-8  text-[16px] bg-transparent border-none hover:bg-[#15803D] hover:text-white justify-start px-4">
+                        <button id="allBtn" class="btn w-full h-8  text-[16px] bg-transparent border-none hover:bg-[#15803D] hover:text-white justify-start px-4">
                             All
                         </button>
                     </div>
                 </div>
                 
                 <!-- Choose Your Trees Section -->
-                <div class="col-span-3">
-                    <div id="plant-container" class="grid grid-cols-3 gap-5">
+                <div id="plantSection" class="col-span-3">
+                    <div id="plant-container" class="grid grid-cols-3 gap-5  max-h-[100vh] overflow-y-auto overflow-x-hidden">
                         <!-- Plants Card -->
                     </div>
+
+                    
+                    <!-- Open the modal using ID.showModal() method -->
+                    <dialog id="plant_modal" class="modal">
+                        <div class="modal-box bg-[#1a1c23] text-white max-w-md p-0 overflow-hidden border border-gray-700">
+                            <!-- Header -->
+                            <div class="flex justify-between items-center p-4">
+                            <h3 id="modal-title" class="font-bold text-lg text-blue-400">Mango Tree</h3>
+                            <form method="dialog">
+                                <button onclick = "document.getElementById('plant_modal')" class="btn btn-sm btn-circle btn-ghost text-gray-400">✕</button>
+                            </form>
+                            </div>
+                    
+                            <!-- Image Section -->
+                            <div class="px-4">
+                                <img id="modal-img" class="w-full h-44 object-cover rounded-xl" src="" alt="" />
+                            </div>
+                    
+                            <!-- Content Section -->
+                            <div class="p-6 space-y-3">
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-gray-400">Category:</span>
+                                        <span id="modal-category" class="badge border-none bg-success badge-soft text-white font-semibold text-xs rounded-full px-3 py-1">Fruit Tree</span>
+                                    </div>
+
+                                    <div>
+                                        <p id="modal-des" class="text-gray-500 text-[13px]">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum illum ullam ex, quia veritatis fugiat accusantium fugit praesentium aspernatur itaque et assumenda voluptatum reprehenderit veniam. Ut mollitia temporibus nulla eum.</p>
+                                    </div>
+                                </div>
+
+                                <p id="modal-description" class="text-sm text-gray-400 leading-relaxed">
+                                <!-- Description will go here -->
+                                </p>
+                            
+                                <h2 id="modal-price" class="text-2xl font-bold text-[#15803D]">$500</h2>
+                            </div>
+                    
+                            <!-- Footer Buttons -->
+                            <div class="modal-action p-4 bg-[#111317] mt-0 flex justify-end gap-3">
+                                <form method="dialog">
+                                    <button onclick = "document.getElementById('plant_modal')" class="btn bg-pink-400 hover:bg-pink-600 border-none text-black px-6 rounded-md">Close</button>
+                                </form>
+                                <button class="btn bg-green-500 hover:bg-[#15803D] border-none text-white font-medium px-6 rounded-md">Add to Cart</button>
+                            </div>
+                        </div>
+                    </dialog>
+
 
                     <div id="loading" class="h-[70vh] flex hidden justify-center items-center">
                         <span class="loading loading-bars loading-xl"></span>
                     </div>
-                    
+
                 </div>
 
                 <!-- Add Card Section -->
@@ -130,15 +178,6 @@
                             </div>
                             <div><i class="fa-solid fa-xmark text-[12px] text-gray-400"></i></div>
                         </div>
-
-                        
-
-                       
-
-                        
-                        
-                        
-
                        
                     </div>
                     <!-- Scrollable Container Ends Here -->

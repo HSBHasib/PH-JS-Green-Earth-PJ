@@ -1,6 +1,14 @@
 const categoryContainer = document.getElementById('category-container');
 const plantContainer = document.getElementById('plant-container');
 const loading = document.getElementById('loading');
+const allButton = document.getElementById('allBtn');
+const plantModal = document.getElementById('plant_modal');
+
+const modalTitle = document.getElementById('modal-title');
+const modalImg = document.getElementById('modal-img');
+const modalCategory = document.getElementById('modal-category');
+const modalDes = document.getElementById('"modal-des');
+const modalPrice = document.getElementById('modal-price');
 
 const showLoading = () => {
     loading.classList.remove("hidden");
@@ -34,14 +42,14 @@ const displayPlants = (dets) => {
         card.innerHTML = `  <div class="p-2.5 space-y-2">
                                     <!-- Img -->
                                     <figure class="rounded-md">
-                                        <img class="h-30 w-full object-cover"
+                                        <img title = ${elem.name} onclick=showPlantModal(${elem.id}) class=" h-30 w-full object-cover"
                                         src="${elem.image}"
                                         alt="${elem.name}" />
                                     </figure>
     
                                     <!-- Info Content -->
                                     <div class="space-y-2.5">
-                                        <h4 class="text-[14px] font-semibold">${elem.name}</h4>
+                                        <h4 onclick=showPlantModal(${elem.id}) class="cursor-pointer hover:text-[#15803D] text-[14px] font-semibold">${elem.name}</h4>
                                         <p class="line-clamp-2 text-xs">${elem.description}</p>
     
                                         <div class="flex justify-between">
@@ -70,12 +78,26 @@ const displayPlants = (dets) => {
 const displayCategoryItem = (dets) => {
     dets.forEach(elem => {
         let btn = document.createElement('button');
-        btn.className =  'btn w-full h-8  text-[16px] bg-transparent border-none hover:bg-[#15803D] hover:text-white justify-start px-4';
+        btn.className =  'btn w-full h-8 text-[16px] bg-transparent border-none hover:bg-[#15803D] hover:text-white justify-start px-4';
         btn.innerText = elem.category_name;
         btn.onclick = () => selectCategory(elem.id, btn);
         categoryContainer.append(btn);
     });
 };
+
+
+allButton.addEventListener('click', () => {
+    const allBtn = categoryContainer.querySelectorAll('button');
+    allBtn.forEach(b => {
+        b.classList.remove('bg-[#15803D]', 'text-white');
+        b.classList.add('bg-transparent');
+    });
+
+    allButton.classList.add('bg-[#15803D]', 'text-white');
+    allButton.classList.remove('bg-transparent');
+
+    loadPlants();
+});
 
 async function selectCategory(id, btn) {
     showLoading();
@@ -92,10 +114,21 @@ async function selectCategory(id, btn) {
 
     const res = await fetch(`https://openapi.programming-hero.com/api/category/${id}`);
     const data = await res.json();
+    hideLoading();
     displayPlants(data.plants);
 };
 
+// async function showPlantModal(id) {
+//     plantModal.showModal();
 
+//     const res = await fetch(`https://openapi.programming-hero.com/api/plant/${id}`);
+//     const data = await res.json();
+//     displayModalInfo(data.plants);
+// };
+
+// function displayModalInfo(dets) {
+//    modalTitle.textContent = 
+// }
 
 loadPlants();
 loadCategoryItem();
