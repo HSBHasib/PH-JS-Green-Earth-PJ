@@ -3,6 +3,8 @@ const plantContainer = document.getElementById('plant-container');
 const loading = document.getElementById('loading');
 const allButton = document.getElementById('allBtn');
 const plantModal = document.getElementById('plant_modal');
+const addToCard = document.getElementById('addToCard');
+const totalAmount = document.getElementById('totalAmount');
 
 const modalTitle = document.getElementById('modal-title');
 const modalImg = document.getElementById('modal-img');
@@ -63,7 +65,7 @@ const displayPlants = (dets) => {
                                     <!-- add card button -->
                                     <div>
                                         <!-- <button class="btn "></button> -->
-                                        <button class="btn btn-wide bg-[#15803D] rounded-full text-white h-9">Add to Cart</button>
+                                        <button class="btn btn-wide bg-[#15803D] rounded-full text-white h-9" onclick="displayAddToCard('${elem.id}', '${elem.name}', ${elem.price})">Add to Cart</button>
                                     </div>
                             </div>`;
         
@@ -85,6 +87,53 @@ const displayCategoryItem = (dets) => {
     });
 };
 
+let cartItems = [];
+const displayAddToCard = (id, name, price) => {
+
+    console.log(id, name, price );
+    let existingCard = cartItems.find(item => item.id === id);
+
+    if(existingCard) {
+        existingCard.quantity += 1;
+    } else {
+        cartItems.push({
+            id,
+            name,
+            price,
+            quantity:1 
+        });
+    }
+
+    updateCart();
+}
+
+function updateCart() {
+    addToCard.innerHTML = "";
+    console.log(cartItems);
+    let total = 0;
+
+    cartItems.forEach(elem => {
+        total += elem.price * elem.quantity;
+
+        const div = document.createElement('div');
+        div.className = 'flex justify-between p-2 bg-[#F0FDF4] rounded-md';
+        div.innerHTML = `<div class="text-[12px]">
+                            <h5 class="font-semibold">${elem.name}</h5>
+                            <h5 class="text-gray-500 font-medium">৳${elem.price} x ${elem.quantity}</h5>
+                        </div>
+                        <div onclick="removeAddToCard('${elem.id}')" class="cursor-pointer" ><i class="fa-solid fa-xmark text-[12px] text-gray-400"></i></div>`
+                        addToCard.append(div);
+    });
+        totalAmount.textContent = total;
+
+}
+
+
+function removeAddToCard(id) {
+    let updateCartElem = cartItems.filter(item => item.id !== id);
+    cartItems = updateCartElem;
+    updateCart();
+}
 
 allButton.addEventListener('click', () => {
     const allBtn = categoryContainer.querySelectorAll('button');

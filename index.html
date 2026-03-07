@@ -15,6 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
+    
     <!-- Header Section -->
     <header>
         <!-- Navber Section -->
@@ -53,7 +54,6 @@
                 </div>
         </section>
     </header>
-    
 
     <!-- Main Section -->
     <main>
@@ -136,57 +136,13 @@
                     <h2 class="text-[14px] font-bold">Your Cart</h2>
                     
                     <!-- Scrollable Container Starts Here -->
-                    <div class="space-y-2 max-h-[280px] overflow-y-auto pr-1">
-                        <!-- Card-Dets-1 -->
-                        <div class="flex justify-between p-2 bg-[#F0FDF4] rounded-md">
-                            <div class="text-[12px]">
-                                <h5 class="font-semibold">Mango Tree</h5>
-                                <h5 class="text-gray-500 font-medium">৳500 x 1</h5>
-                            </div>
-                            <div><i class="fa-solid fa-xmark text-[12px] text-gray-400"></i></div>
-                        </div>
-
-                        <div class="flex justify-between p-2 bg-[#F0FDF4] rounded-md">
-                            <div class="text-[12px]">
-                                <h5 class="font-semibold">Mango Tree</h5>
-                                <h5 class="text-gray-500 font-medium">৳500 x 1</h5>
-                            </div>
-                            <div><i class="fa-solid fa-xmark text-[12px] text-gray-400"></i></div>
-                        </div>
-
-                        <div class="flex justify-between p-2 bg-[#F0FDF4] rounded-md">
-                            <div class="text-[12px]">
-                                <h5 class="font-semibold">Mango Tree</h5>
-                                <h5 class="text-gray-500 font-medium">৳500 x 1</h5>
-                            </div>
-                            <div><i class="fa-solid fa-xmark text-[12px] text-gray-400"></i></div>
-                        </div>
-
-
-                        <div class="flex justify-between p-2 bg-[#F0FDF4] rounded-md">
-                            <div class="text-[12px]">
-                                <h5 class="font-semibold">Mango Tree</h5>
-                                <h5 class="text-gray-500 font-medium">৳500 x 1</h5>
-                            </div>
-                            <div><i class="fa-solid fa-xmark text-[12px] text-gray-400"></i></div>
-                        </div>
-
-                        <div class="flex justify-between p-2 bg-[#F0FDF4] rounded-md">
-                            <div class="text-[12px]">
-                                <h5 class="font-semibold">Mango Tree</h5>
-                                <h5 class="text-gray-500 font-medium">৳500 x 1</h5>
-                            </div>
-                            <div><i class="fa-solid fa-xmark text-[12px] text-gray-400"></i></div>
-                        </div>
-                       
-                    </div>
-                    <!-- Scrollable Container Ends Here -->
+                    <div id="addToCard" class="space-y-2 max-h-[280px] overflow-y-auto pr-1"></div>
 
                     <hr class="text-gray-300 rounded-xl">
                     
                     <div class="flex justify-between">
                         <h5 class="font-semibold text-[14px]">Total:</h5>
-                        <h5 class="font-medium text-[14px]">৳1000</h5>
+                        <h5 class="font-medium text-[14px]">৳<span id="totalAmount">0</span></h5>
                     </div>
                 </div>
 
