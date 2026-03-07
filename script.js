@@ -40,7 +40,7 @@ const displayPlants = (dets) => {
 
     dets.forEach(elem => {
         const card = document.createElement('div');
-        card.className = 'card bg-base-100 w-50 shadow-sm';
+        card.className = 'card bg-base-100 w-48 shadow-sm';
         card.innerHTML = `  <div class="p-2.5 space-y-2">
                                     <!-- Img -->
                                     <figure class="rounded-md">
